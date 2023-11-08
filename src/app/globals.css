@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: rgba(255, 255, 255, 1);
+  --text-color: rgba(37, 48, 73, 1);
+  --text-soft-color: rgba(68, 74, 92, 1);
+  --text-strong-color: rgba(74, 74, 74, 1);
+  --subtle-color: rgba(248, 249, 254, 1);
+  --border-color: rgba(224, 230, 250, 1);
+  --soft-border-color: rgba(203 213 225);
+  --shadow-color: rgba(177, 190, 229, 1);
+  --input-color: rgba(255, 255, 255, 1);
+  --outline-color: rgba(175, 192, 242, 1);
+  --mark-color: rgba(42, 129, 244, 0.08);
+  --card-color: rgba(248, 249, 254, 1);
+  --special-color: rgba(42, 129, 244, 1);
+  --special-bg-color: rgb(78, 152, 255);
+  --alert-color: rgba(240, 91, 1);
+  --alert-bg-color: rgb(255, 107, 107, 91);
+  --success-color: rgba(3, 205, 107, 1);
+  --success-bg-color: rgb(0, 230, 118);
+  --warning-color: rgba(255, 171, 87, 1);
+  --warning-bg-color: rgb(255, 200, 87);
+  --hover-bg-color: rgba(0, 0, 0, 0.05);
+
+  --special-text-color: rgba(255, 255, 255, 1);
+  --special-shadow-color: rgba(80, 92, 124, 1);
+  --special-mark-color: rgba(255, 255, 255, 0.08);
+  --light-color: rgba(240, 243, 254, 1);
+  --dark-color: rgba(60, 70, 97, 1);
+  --skeleton-color: rgb(209 213 219);
+
+  --text-color-rgb: 37, 48, 73;
+  --bg-color-rgb: 255, 255, 255;
+  --subtle-color-rgb: 248, 249, 254;
+  --special-color-rgb: 42, 129, 244;
+  --special-text-color-rgb: 255, 255, 255;
+  --special-bg-color-rgb: 52, 132, 246;
+  --shadow-color-rgb: 177, 190, 229;
+  --special-shadow-color-rgb: 80, 92, 124;
+  --outline-color-rgb: 175, 192, 242;
+  --dark-color-rgb: 60, 70, 97;
+  --light-color-rgb: 240, 243, 254;
+}
+
+[data-theme="dark"] {
+  --bg-color: rgb(30, 32, 38, 1);
+  --text-color: rgba(221, 223, 229, 1);
+  --text-soft-color: rgba(185, 187, 194, 1);
+  --text-strong-color: rgba(187, 187, 187, 1);
+  --subtle-color: rgba(34, 36, 43, 1);
+  --border-color: rgba(42, 48, 64, 1);
+  --soft-border-color: rgba(17 24 39);
+  --shadow-color: rgba(0, 0, 0, 1);
+  --input-color: rgba(28, 28, 28, 1);
+  --outline-color: rgba(132, 158, 221, 1);
+  --mark-color: rgba(87, 137, 230, 0.08);
+  --card-color: rgb(38, 40, 48);
+
+  --special-color: rgba(87, 137, 230, 1);
+  --special-bg-color: rgba(53, 97, 173, 1);
+  --alert-color: rgba(255, 107, 107, 1);
+  --alert-bg-color: rgb(240, 91, 91);
+  --success-color: rgba(0, 230, 118, 1);
+  --success-bg-color: rgb(3, 205, 107);
+  --warning-color: rgba(255, 200, 87, 1);
+  --warning-bg-color: rgb(255, 171, 87);
+  --hover-bg-color: rgba(255, 255, 255, 0.05);
+
+  --special-text-color: rgba(221, 223, 229, 1);
+  --special-shadow-color: rgba(25, 30, 44, 1);
+  --special-mark-color: rgba(221, 223, 229, 0.08);
+  --light-color: rgba(200, 211, 246, 1);
+  --dark-color: rgba(44, 52, 73, 1);
+  --skeleton-color: rgb(55 65 81);
+
+  --text-color-rgb: 221, 223, 229;
+  --bg-color-rgb: 32, 32, 32;
+  --subtle-color-rgb: 34, 36, 43;
+  --special-color-rgb: 87, 137, 230;
+  --special-text-color-rgb: 221, 223, 229;
+  --special-bg-color-rgb: 53, 97, 173;
+  --shadow-color-rgb: 0, 0, 0;
+  --special-shadow-color-rgb: 25, 30, 44;
+  --outline-color-rgb: 132, 158, 221;
+  --dark-color-rgb: 44, 52, 73;
+  --light-color-rgb: 200, 211, 246;
+}
+
+* {
+  color: var(--text-color);
+}
+
+body {
+  background: var(--bg-color);
+}
+
+/* Animation */
+.sidebarOpen {
+  transform: translateX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.sidebarClosed {
+  transform: translateX(-100%);
+  transition: transform 0.2s ease-in-out;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
