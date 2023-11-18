@@ -43,7 +43,7 @@ export async function PUT(
 
     const subject = await Subject.findOne({ code })
 
-    if (subject._id !== id) {
+    if (!subject._id.equals(id)) {
       throw new Error("Mata kuliah dengan kode yang sama sudah ada")
     } else {
       const subject = await Subject.findOneAndUpdate(
