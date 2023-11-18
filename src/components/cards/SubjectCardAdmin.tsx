@@ -2,10 +2,10 @@ import React from "react"
 import PrimaryNavButton from "../buttons/PrimaryNavButton"
 import { ArrowUpRight, BookOpen, Heart, UserCheck } from "react-feather"
 import { Semester } from "@/constants/subject"
-import { ViewType } from "@/app/(admin_route)/admin/subject/page"
 import { Role } from "@/constants/role"
 import FollowButton from "../buttons/FollowButton"
 import { Subject, SubjectWithIsFollowed } from "@/domain/domain"
+import { ViewType } from "@/constants/viewType"
 
 type Props = {
   subject: Subject | SubjectWithIsFollowed

@@ -22,7 +22,6 @@ import { Grid, List } from "react-feather"
 export default function Page() {
   const { data } = useSession()
   const { theme } = useTheme()
-  const isMobileSize = useCheckIfMobileSize()
 
   const [isLoading, setIsLoading] = useState(true)
   const [subjects, setSubjects] = useState<SubjectWithIsFollowed[]>([])
