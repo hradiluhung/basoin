@@ -1,10 +1,11 @@
 "use client"
-import { ViewType } from "@/app/(admin_route)/admin/subject/page"
+
 import SubjectCard from "@/components/cards/SubjectCardAdmin"
 import DropDownFilter from "@/components/dropdownFilter/DropDownFilter"
 import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 import { Semester } from "@/constants/subject"
+import { ViewType } from "@/constants/viewType"
 import { WidgetTypes } from "@/constants/widgetTypes"
 import {
   getFollowedSubjectsByUserId,
