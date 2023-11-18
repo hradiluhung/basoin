@@ -2,6 +2,8 @@ import startDb from "@/db/dbConfig"
 import Subject from "@/models/subjectModels"
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic"
+
 // GET LAST OPENED SUBJECTS
 export async function GET(
   request: Request,

@@ -2,6 +2,7 @@ import startDb from "@/db/dbConfig"
 import User from "@/models/userModel"
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic"
 // GET USER BY ID
 export async function GET(
   request: Request,

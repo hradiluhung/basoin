@@ -4,6 +4,7 @@ import User from "@/models/userModel"
 import { compare } from "bcrypt-ts"
 import { hashPassword } from "@/helpers/hashPassword"
 
+export const dynamic = "force-dynamic"
 // UPDATE PASSWORD BY USER ID
 export async function PUT(
   request: Request,

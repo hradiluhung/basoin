@@ -4,6 +4,8 @@ import startDb from "@/db/dbConfig"
 import Qna from "@/models/qnaModel"
 import Subject from "@/models/subjectModels"
 
+export const dynamic = "force-dynamic"
+
 // GET PAKET BY ID
 export async function GET(
   request: Request,

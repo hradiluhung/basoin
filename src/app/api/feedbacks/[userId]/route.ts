@@ -2,6 +2,8 @@ import startDb from "@/db/dbConfig"
 import Feedback from "@/models/feedbackModels"
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic"
+
 // CREATE NEW FEEDBACK
 export async function POST(
   request: Request,

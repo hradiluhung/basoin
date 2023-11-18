@@ -3,6 +3,8 @@ import Subject from "@/models/subjectModels"
 import User from "@/models/userModel"
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic"
+
 // GET FOLLOWED SUBJECTS BY USER ID
 export async function GET(
   request: Request,

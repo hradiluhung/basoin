@@ -3,6 +3,8 @@ import Subject from "@/models/subjectModels"
 import { NextResponse } from "next/server"
 import startDb from "@/db/dbConfig"
 
+export const dynamic = "force-dynamic"
+
 // GET ALL QNA BY PAKETID
 export async function GET(
   request: Request,

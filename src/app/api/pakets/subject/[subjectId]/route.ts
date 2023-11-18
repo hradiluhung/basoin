@@ -2,6 +2,8 @@ import Paket from "@/models/paketModels"
 import { NextResponse } from "next/server"
 import startDb from "@/db/dbConfig"
 
+export const dynamic = "force-dynamic"
+
 // CREATE PAKET BY SUBJECTID
 export async function POST(
   request: Request,

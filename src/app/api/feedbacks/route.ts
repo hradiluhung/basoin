@@ -3,6 +3,8 @@ import Feedback from "@/models/feedbackModels"
 import User from "@/models/userModel"
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic"
+
 // GET ALL FEEDBACKS
 export async function GET() {
   await startDb()

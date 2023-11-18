@@ -3,6 +3,8 @@ import User from "@/models/userModel"
 import { NextResponse } from "next/server"
 import { hashPassword } from "@/helpers/hashPassword"
 
+export const dynamic = "force-dynamic"
+
 interface NewUserRequest {
   username: string
   name: string

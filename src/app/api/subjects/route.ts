@@ -2,6 +2,8 @@ import { NextResponse } from "next/server"
 import Subject from "@/models/subjectModels"
 import startDb from "@/db/dbConfig"
 
+export const dynamic = "force-dynamic"
+
 // GET ALL SUBJECTS
 export async function GET() {
   await startDb()

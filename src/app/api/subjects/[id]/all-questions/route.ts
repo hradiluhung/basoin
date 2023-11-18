@@ -2,6 +2,8 @@ import Paket from "@/models/paketModels"
 import Qna from "@/models/qnaModel"
 import { NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic"
+
 // GET ALL QUESTIONS BY SUBJECT ID
 export async function GET(
   request: Request,
