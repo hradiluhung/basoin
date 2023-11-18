@@ -1,20 +1,22 @@
-import User from "@/models/userModel";
-import { NextResponse } from "next/server";
-import { connect } from "@/db/dbConfig";
-
-connect();
+import User from "@/models/userModel"
+import { NextResponse } from "next/server"
+import startDb from "@/db/dbConfig"
 
 // GET ALL USERS
 export async function GET() {
   try {
-    const users = await User.find();
+    await startDb()
+    const users = await User.find()
+
+    // filter which role is not admin
+    const filteredUsers = users.filter((user) => user.role !== "admin")
 
     return NextResponse.json({
       status: 200,
       message: "Berhasil mendapatkan data user",
-      users: users,
-    });
+      users: filteredUsers,
+    })
   } catch (error: any) {
-    return NextResponse.json({ status: 500, message: error.message });
+    return NextResponse.json({ status: 500, message: error.message })
   }
 }

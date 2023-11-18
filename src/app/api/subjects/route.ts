@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server"
 import Subject from "@/models/subjectModels"
-import { connect } from "@/db/dbConfig"
-
-connect()
+import startDb from "@/db/dbConfig"
 
 // GET ALL SUBJECTS
 export async function GET() {
+  await startDb()
+
   try {
     const subjects = await Subject.find().sort({ semester: 1 })
 
@@ -21,6 +21,8 @@ export async function GET() {
 
 // CREATE NEW SUBJECT
 export async function POST(request: Request) {
+  await startDb()
+
   try {
     const reqBody = await request.json()
     const { code, name, semester, image, publicId } = reqBody

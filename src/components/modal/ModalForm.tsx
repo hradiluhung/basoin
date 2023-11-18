@@ -21,6 +21,8 @@ type Props = {
     setFile?: any
     required: boolean
     additionalRequiredText?: string
+    existedImage?: string
+    resetExistedImage?: () => void
   }[]
   title: string
   onCloseModal: () => void
@@ -58,19 +60,26 @@ export default function ModalForm({
           className="flex h-full flex-col gap-4 p-8 overflow-y-auto"
         >
           {inputList.map((input, index) =>
-            input.file ? (
+            input.file || input.existedImage ? (
               <>
-                <span className="block mb-2">Gambar Cover</span>
+                <span className="block mb-2">{input.label}</span>
                 <div className="w-full px-2 py-2 rounded-md bg-input-color border border-soft-border-color focus:outline-blue-500">
                   <img
-                    src={URL.createObjectURL(input.file)}
+                    src={
+                      input.existedImage && !input.file
+                        ? input.existedImage
+                        : URL.createObjectURL(input.file)
+                    }
                     alt="Cover Mata Kuliah"
                     className="w-full h-48 object-cover rounded-md"
                   />
                   <button
-                    className="w-full px-4 py-2 mt-2 text-white bg-red-500 rounded-md"
+                    className="px-4 py-2 mt-2 text-white bg-red-500 rounded-md"
+                    type="button"
                     onClick={() => {
                       input.setFile(null)
+                      if (input.resetExistedImage !== undefined)
+                        input.resetExistedImage()
                     }}
                   >
                     Delete

@@ -1,14 +1,14 @@
-import { WidgetTypes } from "@/constants/widgetTypes";
-import Link from "next/link";
-import React from "react";
-import { Icon } from "react-feather";
+import { WidgetTypes } from "@/constants/widgetTypes"
+import Link from "next/link"
+import React from "react"
+import { Icon } from "react-feather"
 
 type Props = {
-  href: string;
-  text?: string;
-  ButtonIcon?: Icon;
-  type: WidgetTypes;
-};
+  href: string
+  text?: string
+  ButtonIcon?: Icon
+  type: WidgetTypes
+}
 
 export default function SecondaryNavButton({
   ButtonIcon,
@@ -52,5 +52,5 @@ export default function SecondaryNavButton({
         </span>
       )}
     </Link>
-  );
+  )
 }

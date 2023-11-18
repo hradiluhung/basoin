@@ -1,13 +1,16 @@
 import Qna from "@/models/qnaModel"
 import Subject from "@/models/subjectModels"
 import { NextResponse } from "next/server"
-import { connect } from "@/db/dbConfig"
-
-connect()
+import startDb from "@/db/dbConfig"
 
 // GET ALL QNA BY PAKETID
-export async function GET(request: Request, context: any) {
-  const paketId = context.params.paketId
+export async function GET(
+  request: Request,
+  { params }: { params: { paketId: string } }
+) {
+  const paketId = params.paketId
+
+  await startDb()
 
   try {
     const qnas = await Qna.find({ _paketId: paketId }).sort({
@@ -25,8 +28,13 @@ export async function GET(request: Request, context: any) {
 }
 
 // CREATE QNA BY PAKETID
-export async function POST(request: Request, context: any) {
-  const paketId = context.params.paketId
+export async function POST(
+  request: Request,
+  { params }: { params: { paketId: string } }
+) {
+  const paketId = params.paketId
+
+  await startDb()
 
   try {
     const reqBody = await request.json()

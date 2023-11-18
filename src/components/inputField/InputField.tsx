@@ -24,8 +24,8 @@ export default function InputField({
   additionalRequiredText,
 }: Props) {
   return (
-    <>
-      <label htmlFor={id} className="block mb-2">
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id} className="block">
         {label}
         {required && <span className="text-red-500">*</span>}
         {additionalRequiredText && (
@@ -54,6 +54,6 @@ export default function InputField({
           onChange={onChange}
         />
       )}
-    </>
+    </div>
   )
 }

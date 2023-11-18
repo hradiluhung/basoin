@@ -108,6 +108,17 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
+/* Fixed Navbar */
+.fixedNavbarOpen {
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.fixedNavbarClosed {
+  transform: translateY(-100%);
+  transition: transform 0.2s ease-in-out;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */

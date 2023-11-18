@@ -1,12 +1,15 @@
 import Paket from "@/models/paketModels"
 import { NextResponse } from "next/server"
-import { connect } from "@/db/dbConfig"
-
-connect()
+import startDb from "@/db/dbConfig"
 
 // CREATE PAKET BY SUBJECTID
-export async function POST(request: Request, context: any) {
-  const subjectId = context.params.subjectId
+export async function POST(
+  request: Request,
+  { params }: { params: { subjectId: string } }
+) {
+  const subjectId = params.subjectId
+
+  await startDb()
 
   try {
     const reqBody = await request.json()
@@ -31,8 +34,13 @@ export async function POST(request: Request, context: any) {
 }
 
 // GET ALL PAKET BY SUBJECTID
-export async function GET(request: Request, context: any) {
-  const subjectId = context.params.subjectId
+export async function GET(
+  request: Request,
+  { params }: { params: { subjectId: string } }
+) {
+  const subjectId = params.subjectId
+
+  await startDb()
 
   try {
     const pakets = await Paket.find({ _subjectId: subjectId }).sort({

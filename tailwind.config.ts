@@ -12,6 +12,8 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "card-gradient":
+          "linear-gradient(180deg, var(--special-bg-color), var(--special-color))",
       },
       colors: {
         "subtle-color": "var(--subtle-color)",
@@ -121,6 +123,9 @@ const config: Config = {
         "up-down": "up-down 5s linear infinite",
         "rotate-anticlockwise": "rotate-anticlockwise 9s linear infinite",
         "rotate-clockwise": "rotate-clockwise 9s linear infinite",
+      },
+      padding: {
+        "74": "18.5rem",
       },
     },
   },

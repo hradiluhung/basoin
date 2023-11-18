@@ -24,6 +24,7 @@ const subjectSchema = new Schema(
     },
     followers: {
       type: [Schema.Types.ObjectId],
+      ref: "User",
       default: [],
     },
     numberOfQnA: {

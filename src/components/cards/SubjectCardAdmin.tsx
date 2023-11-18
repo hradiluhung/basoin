@@ -1,17 +1,30 @@
-import React from "react";
-import PrimaryNavButton from "../buttons/PrimaryNavButton";
-import { ArrowUpRight, BookOpen, UserCheck } from "react-feather";
-import { ViewType } from "@/app/admin/subject/page";
-import { Semester } from "@/constants/subject";
+import React from "react"
+import PrimaryNavButton from "../buttons/PrimaryNavButton"
+import { ArrowUpRight, BookOpen, Heart, UserCheck } from "react-feather"
+import { Semester } from "@/constants/subject"
+import { ViewType } from "@/app/(admin_route)/admin/subject/page"
+import { Role } from "@/constants/role"
+import FollowButton from "../buttons/FollowButton"
+import { Subject, SubjectWithIsFollowed } from "@/domain/domain"
 
 type Props = {
-  subject: any;
-  viewType?: ViewType;
-};
+  subject: Subject | SubjectWithIsFollowed
+  viewType?: ViewType
+  role?: Role
+  isFollowed?: boolean
+  onUpdateFollowedSubjects?: () => void
+  isLoading?: boolean
+  isFollowButtonHidden?: boolean
+}
 
-export default function SubjectCardAdmin({
+export default function SubjectCard({
   subject,
   viewType = ViewType.GRID,
+  role = Role.USER,
+  isFollowed = false,
+  onUpdateFollowedSubjects,
+  isLoading = false,
+  isFollowButtonHidden = false,
 }: Props) {
   return (
     <>
@@ -57,11 +70,29 @@ export default function SubjectCardAdmin({
                 </div>
               </div>
               <div>
-                <PrimaryNavButton
-                  ButtonIcon={ArrowUpRight}
-                  href={`/admin/subject/${subject._id}`}
-                  text="Detail"
-                />
+                {role === Role.ADMIN && (
+                  <PrimaryNavButton
+                    ButtonIcon={ArrowUpRight}
+                    href={`/admin/subject/${subject._id}`}
+                    text="Detail"
+                  />
+                )}
+                {role === Role.USER && (
+                  <div className="flex gap-2 items-center">
+                    {!isFollowButtonHidden && (
+                      <FollowButton
+                        isFollowed={isFollowed}
+                        onClick={onUpdateFollowedSubjects}
+                        isLoading={isLoading}
+                      />
+                    )}
+
+                    <PrimaryNavButton
+                      ButtonIcon={ArrowUpRight}
+                      href={`/subject/${subject._id}`}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -101,14 +132,31 @@ export default function SubjectCardAdmin({
             </div>
           </div>
           <div className="flex items-center basis-3/12 justify-end">
-            <PrimaryNavButton
-              ButtonIcon={ArrowUpRight}
-              href={`/admin/subject/${subject._id}`}
-              text="Detail"
-            />
+            {role === Role.ADMIN && (
+              <PrimaryNavButton
+                ButtonIcon={ArrowUpRight}
+                href={`/admin/subject/${subject._id}`}
+                text="Detail"
+              />
+            )}
+            {role === Role.USER && (
+              <div className="flex gap-2 items-center">
+                <FollowButton
+                  isFollowed={isFollowed}
+                  onClick={onUpdateFollowedSubjects}
+                  isLoading={isLoading}
+                />
+
+                <PrimaryNavButton
+                  text="Detail"
+                  ButtonIcon={ArrowUpRight}
+                  href={`/subject/${subject._id}`}
+                />
+              </div>
+            )}
           </div>
         </div>
       )}
     </>
-  );
+  )
 }

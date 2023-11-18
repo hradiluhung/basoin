@@ -1,14 +1,17 @@
 import Paket from "@/models/paketModels"
 import { NextResponse } from "next/server"
-import { connect } from "@/db/dbConfig"
+import startDb from "@/db/dbConfig"
 import Qna from "@/models/qnaModel"
 import Subject from "@/models/subjectModels"
 
-connect()
-
 // GET PAKET BY ID
-export async function GET(request: Request, context: any) {
-  const id = context.params.id
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id
+
+  await startDb()
 
   try {
     const paket = await Paket.findById(id)
@@ -24,8 +27,13 @@ export async function GET(request: Request, context: any) {
 }
 
 // UPDATE PAKET BY ID
-export async function PUT(request: Request, context: any) {
-  const id = context.params.id
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id
+
+  await startDb()
 
   try {
     const reqBody = await request.json()
@@ -48,8 +56,13 @@ export async function PUT(request: Request, context: any) {
 }
 
 // DELETE PAKET BY ID
-export async function DELETE(request: Request, context: any) {
-  const id = context.params.id
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id
+
+  await startDb()
 
   try {
     const paket = await Paket.findByIdAndDelete(id)

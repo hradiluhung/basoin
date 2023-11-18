@@ -1,14 +1,14 @@
-import { WidgetTypes } from "@/constants/widgetTypes";
-import Link from "next/link";
-import React from "react";
-import { Icon } from "react-feather";
+import { WidgetTypes } from "@/constants/widgetTypes"
+import Link from "next/link"
+import React from "react"
+import { Icon } from "react-feather"
 
 type Props = {
-  href: string;
-  text: string;
-  ButtonIcon?: Icon;
-  type?: WidgetTypes;
-};
+  href: string
+  text?: string
+  ButtonIcon?: Icon
+  type?: WidgetTypes
+}
 
 export default function PrimaryNavButton({
   ButtonIcon,
@@ -43,7 +43,7 @@ export default function PrimaryNavButton({
       `}
     >
       {ButtonIcon && <ButtonIcon className="w-5 h-5 stroke-white" />}
-      <span className="text-white">{text}</span>
+      {text && <span className="text-white">{text}</span>}
     </Link>
-  );
+  )
 }

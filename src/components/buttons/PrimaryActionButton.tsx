@@ -1,15 +1,15 @@
-import { WidgetTypes } from "@/constants/widgetTypes";
-import React from "react";
-import { Icon } from "react-feather";
+import { WidgetTypes } from "@/constants/widgetTypes"
+import React from "react"
+import { Icon } from "react-feather"
 
 type Props = {
-  text?: string;
-  ButtonIcon?: Icon;
-  onClick?: () => void;
-  isLoading?: boolean;
-  type?: WidgetTypes;
-  isSubmit?: boolean;
-};
+  text?: string
+  ButtonIcon?: Icon
+  onClick?: () => void
+  isLoading?: boolean
+  type?: WidgetTypes
+  isSubmit?: boolean
+}
 
 export default function PrimaryActionButton({
   ButtonIcon,
@@ -24,7 +24,8 @@ export default function PrimaryActionButton({
       onClick={onClick}
       type={isSubmit ? "submit" : "button"}
       disabled={isLoading}
-      className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all
+      className={`flex items-center px-4 py-2 rounded-xl transition-all
+        ${text !== undefined && ButtonIcon !== undefined && "gap-2"}
         ${
           type === WidgetTypes.NORMAL &&
           "bg-special-bg-color hover:bg-special-color"
@@ -57,5 +58,5 @@ export default function PrimaryActionButton({
       )}
       <span className="text-white">{text}</span>
     </button>
-  );
+  )
 }

@@ -9,12 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "axios": "^1.5.1",
     "bcrypt-ts": "^4.0.1",
     "cloudinary": "^1.41.0",
     "dotenv": "^16.3.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.3",
+    "mongoose": "^7.6.4",
     "multer": "^1.4.5-lts.1",
     "next": "13.5.6",
     "next-auth": "^4.24.4",

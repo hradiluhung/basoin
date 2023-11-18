@@ -1,16 +1,9 @@
-import {
-  Home,
-  CheckCircle,
-  Globe,
-  User,
-  List,
-  MessageCircle,
-} from "react-feather";
+import { Home, CheckCircle, Globe, User, List, Send } from "react-feather"
 
 export const userMenu = [
   {
     title: "Dashboard",
-    href: "/dashboard",
+    href: "/",
     icon: Home,
   },
   {
@@ -28,12 +21,17 @@ export const userMenu = [
     href: "/profile",
     icon: User,
   },
-];
+  {
+    title: "Kirim Feedback",
+    href: "/feedback",
+    icon: Send,
+  },
+]
 
 export const adminMenu = [
   {
     title: "Dashboard",
-    href: "/admin/dashboard",
+    href: "/admin",
     icon: Home,
   },
   {
@@ -49,6 +47,6 @@ export const adminMenu = [
   {
     title: "Feedback",
     href: "/admin/feedbacks",
-    icon: MessageCircle,
+    icon: Send,
   },
-];
+]

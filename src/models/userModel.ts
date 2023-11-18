@@ -21,7 +21,13 @@ const userSchema = new Schema(
     },
     followedSubjects: {
       type: [Schema.Types.ObjectId],
+      ref: "Subject",
       default: [],
+    },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
     },
   },
   {

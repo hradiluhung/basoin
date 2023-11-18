@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation"
 import { LogOut, Menu, X } from "react-feather"
 import { APP_NAME } from "@/constants/appConfig"
 import { checkIfMobileSize } from "@/helpers/checkIfMobileSize"
+import { signOut } from "next-auth/react"
 
 export default function Sidebar({ role }: { role: Role }) {
   const pathName = usePathname()
@@ -20,7 +21,7 @@ export default function Sidebar({ role }: { role: Role }) {
   }
 
   const logout = async () => {
-    console.log("logout")
+    signOut()
   }
 
   useEffect(() => {
@@ -34,11 +35,11 @@ export default function Sidebar({ role }: { role: Role }) {
   return (
     <>
       <Menu
-        className="hidden fixed top-4 left-4 cursor-pointer sm:block"
+        className="hidden fixed z-20 top-6 left-4 cursor-pointer sm:block"
         onClick={toggleSidebar}
       />
       <aside
-        className={`fixed bg-subtle-color w-64 min-h-screen flex flex-col py-4 rounded-md shadow-md z-10 sm:fixed sm:top-0 sm:left-0 
+        className={`fixed bg-subtle-color w-64 min-h-screen flex flex-col py-4 rounded-md shadow-md z-20 sm:fixed sm:top-0 sm:left-0 
             ${isSidebarOpen ? "sidebarOpen" : "sidebarClosed"}
           `}
       >
@@ -81,12 +82,18 @@ export default function Sidebar({ role }: { role: Role }) {
                   onClick={isMobileSize ? toggleSidebar : () => {}}
                   className={`flex items-center space-x-2 p-2 rounded-md duration-200 ${
                     pathName === item.href
-                      ? "text-white bg-special-bg-color hover:bg-special-bg-color"
+                      ? "bg-special-bg-color hover:bg-special-bg-color"
                       : "hover:bg-mark-color"
                   }`}
                 >
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.title}</span>
+                  <item.icon
+                    className={`h-4 w-4 ${
+                      pathName === item.href && "stroke-white"
+                    }`}
+                  />
+                  <span className={`${pathName === item.href && "text-white"}`}>
+                    {item.title}
+                  </span>
                 </Link>
               ))}
         </nav>

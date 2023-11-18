@@ -22,7 +22,7 @@ export default function TextArea({
   onChange,
 }: Props) {
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <label htmlFor={id} className="block mb-2">
         {label}
         {required && <span className="text-red-500">*</span>}
@@ -35,6 +35,6 @@ export default function TextArea({
         value={value}
         onChange={onChange}
       />
-    </>
+    </div>
   )
 }

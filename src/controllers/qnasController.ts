@@ -58,3 +58,37 @@ export const deleteQnaByQnaId = async (id: string) => {
     throw new Error(error.response.data.message)
   }
 }
+
+// UPDATE QNA BY ID
+export const updateQnaByQnaId = async ({
+  id,
+  question,
+  questionImage,
+  publicIdQuestionImage,
+  answer,
+  answerImage,
+  publicIdAnswerImage,
+}: {
+  id: string
+  question: string
+  questionImage: string
+  publicIdQuestionImage: string
+  answer: string
+  answerImage: string
+  publicIdAnswerImage: string
+}) => {
+  try {
+    const response = await axios.put(`/api/qnas/${id}`, {
+      question,
+      questionImage,
+      publicIdQuestionImage,
+      answer,
+      answerImage,
+      publicIdAnswerImage,
+    })
+
+    return response.data
+  } catch (error: any) {
+    throw new Error(error.response.data.message)
+  }
+}
