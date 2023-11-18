@@ -6,7 +6,7 @@ import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 import { APP_NAME } from "@/constants/appConfig"
 import { WidgetTypes } from "@/constants/widgetTypes"
 import { signUp } from "@/controllers/usersController"
-import { checkIfMobileSize } from "@/helpers/checkIfMobileSize"
+import { useCheckIfMobileSize } from "@/helpers/checkIfMobileSize"
 import { showToast } from "@/helpers/showToast"
 import { signIn } from "next-auth/react"
 import { useTheme } from "next-themes"
@@ -16,7 +16,7 @@ import { LogIn, Menu, Search, X } from "react-feather"
 
 export default function Page() {
   const { theme } = useTheme()
-  const isMobileSize = checkIfMobileSize()
+  const isMobileSize = useCheckIfMobileSize()
   const router = useRouter()
 
   const [isSignUpModalOpen, setIsSignInModalOpen] = useState(false)

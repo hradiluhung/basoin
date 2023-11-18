@@ -11,7 +11,7 @@ import {
   updateFollowedSubjects,
 } from "@/controllers/subjectsController"
 import { SubjectWithIsFollowed } from "@/domain/domain"
-import { checkIfMobileSize } from "@/helpers/checkIfMobileSize"
+import { useCheckIfMobileSize } from "@/helpers/checkIfMobileSize"
 import { showToast } from "@/helpers/showToast"
 import { useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
@@ -21,7 +21,7 @@ import { Grid, List } from "react-feather"
 export default function Page() {
   const { data } = useSession()
   const { theme } = useTheme()
-  const isMobileSize = checkIfMobileSize()
+  const isMobileSize = useCheckIfMobileSize()
 
   const [isLoading, setIsLoading] = useState(true)
   const [subjects, setSubjects] = useState<SubjectWithIsFollowed[]>([])

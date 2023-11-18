@@ -6,12 +6,12 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LogOut, Menu, X } from "react-feather"
 import { APP_NAME } from "@/constants/appConfig"
-import { checkIfMobileSize } from "@/helpers/checkIfMobileSize"
+import { useCheckIfMobileSize } from "@/helpers/checkIfMobileSize"
 import { signOut } from "next-auth/react"
 
 export default function Sidebar({ role }: { role: Role }) {
   const pathName = usePathname()
-  const isMobileSize = checkIfMobileSize()
+  const isMobileSize = useCheckIfMobileSize()
   const [isSidebarOpen, setIsSidebarOpen] = useState(
     isMobileSize ? false : true
   )
