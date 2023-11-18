@@ -1,13 +1,13 @@
-import { WidgetTypes } from "@/constants/widgetTypes";
-import React from "react";
-import { Icon } from "react-feather";
+import { WidgetTypes } from "@/constants/widgetTypes"
+import React from "react"
+import { Icon } from "react-feather"
 
 type Props = {
-  text?: string;
-  ButtonIcon?: Icon;
-  onClick?: () => void;
-  type?: WidgetTypes;
-};
+  text?: string
+  ButtonIcon?: Icon
+  onClick?: () => void
+  type?: WidgetTypes
+}
 
 export default function SecondaryActionButton({
   ButtonIcon,
@@ -17,6 +17,7 @@ export default function SecondaryActionButton({
 }: Props) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`flex gap-2 items-center px-4 py-2 rounded-xl transition-all border hover:bg-hover-bg-color
         ${type === WidgetTypes.NORMAL && "border-special-color"}
@@ -51,5 +52,5 @@ export default function SecondaryActionButton({
         </span>
       )}
     </button>
-  );
+  )
 }
