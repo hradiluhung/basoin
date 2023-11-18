@@ -143,13 +143,13 @@ export default function Page() {
           scrollPosition > 100 ? "fixedNavbarOpen" : "fixedNavbarClosed"
         }`}
       >
-        <div className="font-semibold text-lg sm:ms-8">Temukan Mata Kuliah</div>
+        <div className="font-semibold text-lg sm:ms-8">Mata Kuliah Diikuti</div>
         <ToggleThemeButton />
       </div>
       <main className="px-10 sm:px-2">
         <div className="mb-6 flex justify-start items-center md:flex-col md:items-start sm:flex-col sm:items-start gap-4">
           <div>
-            <h1 className="text-2xl font-semibold">Temukan Mata Kuliah</h1>
+            <h1 className="text-2xl font-semibold">Mata Kuliah Diikuti</h1>
             <p className="text-soft-color">
               Daftar mata kuliah yang tersedia di bank soal
             </p>

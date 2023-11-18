@@ -696,13 +696,15 @@ export default function Page({
             ? filteredQnas.length === 0 &&
               !isLoadingQnas && (
                 <div className="flex justify-center items-center">
-                  <p className="text-soft-color">Mata kuliah tidak ditemukan</p>
+                  <p className="text-soft-color">
+                    Soal atau jawaban tidak ditemukan
+                  </p>
                 </div>
               )
             : qnas.length === 0 &&
               !isLoadingQnas && (
                 <div className="flex justify-center items-center">
-                  <p className="text-soft-color">Tidak ada mata kuliah</p>
+                  <p className="text-soft-color">Tidak ada soal dan jawaban</p>
                 </div>
               )}
 
