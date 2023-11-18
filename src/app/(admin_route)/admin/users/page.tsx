@@ -135,7 +135,7 @@ export default function Page() {
                         : "border-b-2 border-mark-color"
                     } shadow-md bg-card-color overflow-hidden flex justify-between items-center p-4`}
                   >
-                    <div className="flex items-center basis-8/12 sm:flex-col sm:items-start sm:gap-2">
+                    <div className="flex items-center basis-full sm:flex-col sm:items-start sm:gap-2">
                       <div className="basis-1/12">
                         <span className="text-soft-color text-xl font-semibold">
                           {index + 1}
