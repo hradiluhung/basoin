@@ -6,6 +6,7 @@ import { Role } from "@/constants/role"
 import FollowButton from "../buttons/FollowButton"
 import { Subject, SubjectWithIsFollowed } from "@/domain/domain"
 import { ViewType } from "@/constants/viewType"
+import Image from 'next/image'
 
 type Props = {
   subject: Subject | SubjectWithIsFollowed
@@ -33,7 +34,7 @@ export default function SubjectCard({
           key={subject._id}
           className="rounded-lg shadow-md bg-card-color flex justify-between items-center flex-col overflow-hidden"
         >
-          <img
+          <Image
             src={
               subject.image !== "" ? subject.image : "/placeholder_subject.jpg"
             }

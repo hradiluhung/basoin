@@ -1,6 +1,5 @@
 "use client"
 import PrimaryActionButton from "@/components/buttons/PrimaryActionButton"
-import PrimaryNavButton from "@/components/buttons/PrimaryNavButton"
 import SecondaryActionButton from "@/components/buttons/SecondaryActionButton"
 import TetriaryActionButton from "@/components/buttons/TetriaryActionButton"
 import ModalAlert from "@/components/modal/ModalAlert"
@@ -28,13 +27,13 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import {
   ArrowLeftCircle,
-  Edit,
   Edit2,
   Loader,
   PlusCircle,
   Trash2,
   X,
 } from "react-feather"
+import Image from "next/image"
 
 export default function Page({
   params,
@@ -435,13 +434,13 @@ export default function Page({
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10">
             <div className="h-5/6 bg-white rounded-lg flex flex-col justify-center items-center relative">
               {openedImageDetail.type === "question" ? (
-                <img
+                <Image
                   src={qnas[openedImageDetail.index].questionImage}
                   alt="question"
                   className="w-auto h-full rounded-lg object-cover"
                 />
               ) : (
-                <img
+                <Image
                   src={qnas[openedImageDetail.index].answerImage}
                   alt="answer"
                   className="w-auto h-full rounded-lg object-cover"
@@ -756,7 +755,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.questionImage !== "" && (
-                          <img
+                          <Image
                             onClick={() => {
                               showImageDetail(index, "question")
                             }}
@@ -776,7 +775,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.answerImage !== "" && (
-                          <img
+                          <Image
                             onClick={() => {
                               showImageDetail(index, "answer")
                             }}
@@ -834,7 +833,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.questionImage !== "" && (
-                          <img
+                          <Image
                             onClick={() => {
                               showImageDetail(index, "question")
                             }}
@@ -854,7 +853,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.answerImage !== "" && (
-                          <img
+                          <Image
                             onClick={() => {
                               showImageDetail(index, "answer")
                             }}

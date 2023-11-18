@@ -17,6 +17,7 @@ import FollowButton from "@/components/buttons/FollowButton"
 import { useSession } from "next-auth/react"
 import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
+import Image from 'next/image'
 
 export default function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
@@ -333,7 +334,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             </span>
                           </div>
                           {qna.questionImage !== "" && (
-                            <img
+                            <Image
                               // onClick={() => {
                               //   showImageDetail(index, "question")
                               // }}
@@ -353,7 +354,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             </span>
                           </div>
                           {qna.answerImage !== "" && (
-                            <img
+                            <Image
                               // onClick={() => {
                               //   showImageDetail(index, "answer")
                               // }}
@@ -396,7 +397,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             </span>
                           </div>
                           {qna.questionImage !== "" && (
-                            <img
+                            <Image
                               // onClick={() => {
                               //   showImageDetail(index, "question")
                               // }}
@@ -416,7 +417,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             </span>
                           </div>
                           {qna.answerImage !== "" && (
-                            <img
+                            <Image
                               // onClick={() => {
                               //   showImageDetail(index, "answer")
                               // }}
