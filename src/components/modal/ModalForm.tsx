@@ -6,7 +6,6 @@ import { Check, Loader, X } from "react-feather"
 import PrimaryActionButton from "../buttons/PrimaryActionButton"
 import TextArea from "../textArea/TextArea"
 import TetriaryActionButton from "../buttons/TetriaryActionButton"
-import Image from 'next/image'
 
 type Props = {
   inputList: {
@@ -65,7 +64,7 @@ export default function ModalForm({
               <>
                 <span className="block mb-2">{input.label}</span>
                 <div className="w-full px-2 py-2 rounded-md bg-input-color border border-soft-border-color focus:outline-blue-500">
-                  <Image
+                  <img
                     src={
                       input.existedImage && !input.file
                         ? input.existedImage

@@ -6,7 +6,6 @@ import { getUserById } from "@/controllers/usersController"
 import { Edit } from "react-feather"
 import TetriaryActionButton from "@/components/buttons/TetriaryActionButton"
 import { useRouter } from "next/navigation"
-import Image from 'next/image'
 
 export default function Page() {
   const { data } = useSession()
@@ -60,7 +59,7 @@ export default function Page() {
           <>
             <div className="w-full h-48 rounded-lg bg-card-color relative p-4">
               <div className="flex flex-col justify-center items-center h-full">
-                <Image
+                <img
                   src={`https://api.dicebear.com/7.x/initials/svg?seed=${user.name}&backgroundType=gradientLinear`}
                   alt="avatar"
                   className="w-24 h-24 rounded-full"

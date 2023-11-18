@@ -12,7 +12,6 @@ import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { ArrowLeftCircle, Check, Loader } from "react-feather"
-import Image from "next/image"
 
 export default function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
@@ -180,7 +179,7 @@ export default function Page({ params }: { params: { id: string } }) {
                   <>
                     <span className="block mb-2">Gambar Cover</span>
                     <div className="w-full px-2 py-2 rounded-md bg-input-color border border-soft-border-color focus:outline-blue-500">
-                      <Image
+                      <img
                         src={
                           image != null
                             ? URL.createObjectURL(image)

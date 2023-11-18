@@ -33,7 +33,6 @@ import {
   Trash2,
   X,
 } from "react-feather"
-import Image from "next/image"
 
 export default function Page({
   params,
@@ -434,13 +433,13 @@ export default function Page({
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10">
             <div className="h-5/6 bg-white rounded-lg flex flex-col justify-center items-center relative">
               {openedImageDetail.type === "question" ? (
-                <Image
+                <img
                   src={qnas[openedImageDetail.index].questionImage}
                   alt="question"
                   className="w-auto h-full rounded-lg object-cover"
                 />
               ) : (
-                <Image
+                <img
                   src={qnas[openedImageDetail.index].answerImage}
                   alt="answer"
                   className="w-auto h-full rounded-lg object-cover"
@@ -755,7 +754,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.questionImage !== "" && (
-                          <Image
+                          <img
                             onClick={() => {
                               showImageDetail(index, "question")
                             }}
@@ -775,7 +774,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.answerImage !== "" && (
-                          <Image
+                          <img
                             onClick={() => {
                               showImageDetail(index, "answer")
                             }}
@@ -833,7 +832,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.questionImage !== "" && (
-                          <Image
+                          <img
                             onClick={() => {
                               showImageDetail(index, "question")
                             }}
@@ -853,7 +852,7 @@ export default function Page({
                           </span>
                         </div>
                         {qna.answerImage !== "" && (
-                          <Image
+                          <img
                             onClick={() => {
                               showImageDetail(index, "answer")
                             }}
