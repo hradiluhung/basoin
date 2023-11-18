@@ -12,10 +12,12 @@ import { Subject } from "@/domain/domain"
 import { Role } from "@/constants/role"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 
-export enum ViewType {
+enum ViewType {
   LIST = "list",
   GRID = "grid",
 }
+
+export { ViewType }
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState("")
