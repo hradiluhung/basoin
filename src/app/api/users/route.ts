@@ -11,6 +11,11 @@ export async function GET() {
     // filter which role is not admin
     const filteredUsers = users.filter((user) => user.role !== "admin")
 
+    // hide password
+    filteredUsers.forEach((user) => {
+      user.password = undefined
+    })
+
     return NextResponse.json({
       status: 200,
       message: "Berhasil mendapatkan data user",
