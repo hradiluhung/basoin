@@ -7,7 +7,7 @@ import { Edit } from "react-feather"
 import TetriaryActionButton from "@/components/buttons/TetriaryActionButton"
 import { useRouter } from "next/navigation"
 
-export default function page() {
+export default function Page() {
   const { data } = useSession()
   const router = useRouter()
 

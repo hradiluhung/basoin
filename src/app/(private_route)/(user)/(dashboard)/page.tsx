@@ -11,7 +11,7 @@ import { WidgetTypes } from "@/constants/widgetTypes"
 import { useTheme } from "next-themes"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 
-export default function page() {
+export default function Page() {
   const { data } = useSession()
   const { theme } = useTheme()
 
@@ -73,7 +73,6 @@ export default function page() {
   useEffect(() => {
     fetchUser()
   }, [data])
-
 
   return (
     <>

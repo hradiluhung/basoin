@@ -14,7 +14,7 @@ import { WidgetTypes } from "@/constants/widgetTypes"
 import { Semester } from "@/constants/subject"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 
-export default function page() {
+export default function Page() {
   const { theme } = useTheme()
   const router = useRouter()
 

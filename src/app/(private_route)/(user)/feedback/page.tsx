@@ -14,7 +14,7 @@ import { Check, Loader } from "react-feather"
 
 type Props = {}
 
-export default function page({}: Props) {
+export default function Page({}: Props) {
   const { data } = useSession()
   const { theme } = useTheme()
 

@@ -18,7 +18,7 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { Grid, List } from "react-feather"
 
-export default function page() {
+export default function Page() {
   const { data } = useSession()
   const { theme } = useTheme()
   const isMobileSize = checkIfMobileSize()

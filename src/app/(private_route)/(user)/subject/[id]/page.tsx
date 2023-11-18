@@ -18,7 +18,7 @@ import { useSession } from "next-auth/react"
 import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 
-export default function page({ params }: { params: { id: string } }) {
+export default function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
   const router = useRouter()
   const { data } = useSession()

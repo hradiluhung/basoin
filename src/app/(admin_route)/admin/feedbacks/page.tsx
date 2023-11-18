@@ -8,7 +8,7 @@ import { Feedback } from "@/domain/domain"
 import { useEffect, useState } from "react"
 import { BookOpen, Image, Maximize2, X } from "react-feather"
 
-export default function page() {
+export default function Page() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [isLoadingFetchFeedbacks, setIsLoadingFetchFeedbacks] = useState(true)
   const [selectedFeedback, setSelectedFeedback] = useState<Feedback>({

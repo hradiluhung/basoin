@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { LogIn, Menu, Search, X } from "react-feather"
 
-export default function page() {
+export default function Page() {
   const { theme } = useTheme()
   const isMobileSize = checkIfMobileSize()
   const router = useRouter()

@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { ArrowLeftCircle, Check, Key, Loader } from "react-feather"
 
-export default function page() {
+export default function Page() {
   const { data } = useSession()
   const router = useRouter()
   const { theme } = useTheme()

@@ -33,7 +33,7 @@ import {
 import { Paket, Subject } from "@/domain/domain"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 
-function page({ params }: { params: { id: string } }) {
+function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
   const router = useRouter()
 

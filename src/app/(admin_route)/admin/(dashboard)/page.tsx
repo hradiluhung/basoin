@@ -8,7 +8,7 @@ import { getAllUsers } from "@/controllers/usersController"
 import { useEffect, useState } from "react"
 import { Book, Send, User } from "react-feather"
 
-export default function page() {
+export default function Page() {
   const [numberOfUsers, setNumberOfUsers] = useState(0)
   const [numberOfSubjects, setNumberOfSubjects] = useState(0)
   const [numberOfFeedbacks, setNumberOfFeedbacks] = useState(0)

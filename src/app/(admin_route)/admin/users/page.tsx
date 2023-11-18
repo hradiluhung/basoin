@@ -7,7 +7,7 @@ import { User } from "@/domain/domain"
 import React, { useEffect, useState } from "react"
 import { BookOpen } from "react-feather"
 
-export default function page() {
+export default function Page() {
   const [users, setUsers] = useState<User[]>([])
   const [filteredUsers, setFilteredUsers] = useState<User[]>([])
   const [isLoadingFetchUser, setIsLoadingFetchUser] = useState(true)

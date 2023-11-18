@@ -36,7 +36,7 @@ import {
   X,
 } from "react-feather"
 
-export default function page({
+export default function Page({
   params,
 }: {
   params: { id: string; paketId: string }
