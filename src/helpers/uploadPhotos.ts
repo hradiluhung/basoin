@@ -44,18 +44,16 @@ async function uploadPhotoToCloudinary(newFile: any) {
     folder: "basoin",
   })
 
-  console.log("PHOTO PROMISE:" + photoPromise)
-
   return await Promise.resolve(photoPromise)
 }
 
 export async function uploadPhoto(formData: any) {
   try {
     const newFile = await savePhotoToLocal(formData)
-    console.log("NEW FILE:" + newFile)
+    console.log(newFile)
 
     const photos = await uploadPhotoToCloudinary(newFile)
-    console.log("PHOTOS:" + photos)
+    console.log(photos)
 
     fs.unlink(newFile.filePath)
     revalidatePath("/")
