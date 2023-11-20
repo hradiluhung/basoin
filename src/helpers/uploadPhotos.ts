@@ -44,6 +44,8 @@ async function uploadPhotoToCloudinary(newFile: any) {
     folder: "basoin",
   })
 
+  console.log(photoPromise)
+
   return await Promise.resolve(photoPromise)
 }
 
