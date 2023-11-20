@@ -15,57 +15,102 @@ cloudinary.config({
   secure: true,
 })
 
-async function savePhotoToLocal(formData: any) {
-  const file = formData.get("file")
+// async function savePhotoToLocal(formData: any) {
+//   const file = formData.get("file")
 
-  const bufferPromise = file.arrayBuffer().then((data: any) => {
-    const buffer = Buffer.from(data)
-    const name = uuidv4()
-    const ext = file.type.split("/")[1]
+//   const bufferPromise = file.arrayBuffer().then((data: any) => {
+//     const buffer = Buffer.from(data)
+//     const name = uuidv4()
+//     const ext = file.type.split("/")[1]
 
-    // const uploadDir = path.join(process.cwd(), "public", `/${name}.${ext}`);
+//     // const uploadDir = path.join(process.cwd(), "public", `/${name}.${ext}`);
 
-    const tempdir = os.tmpdir()
-    const uploadDir = path.join(tempdir, `/${name}.${ext}`)
+//     const tempdir = os.tmpdir()
+//     const uploadDir = path.join(tempdir, `/${name}.${ext}`)
 
-    fs.writeFile(uploadDir, buffer)
+//     fs.writeFile(uploadDir, buffer)
 
-    return {
-      filePath: uploadDir,
-      fileName: file.name,
-    }
-  })
+//     return {
+//       filePath: uploadDir,
+//       fileName: file.name,
+//     }
+//   })
 
-  return await Promise.resolve(bufferPromise)
-}
+//   return await Promise.resolve(bufferPromise)
+// }
 
-async function uploadPhotoToCloudinary(newFile: any) {
-  const photoPromise = cloudinary.uploader.upload(newFile.filePath, {
-    folder: "basoin",
-  })
+// async function uploadPhotoToCloudinary(newFile: any) {
+//   const photoPromise = cloudinary.uploader.upload(newFile.filePath, {
+//     folder: "basoin",
+//   })
 
-  console.log(photoPromise)
+//   console.log(photoPromise)
 
-  return await Promise.resolve(photoPromise)
-}
+//   return await Promise.resolve(photoPromise)
+// }
+
+// export async function uploadPhoto(formData: any) {
+//   try {
+//     const newFile = await savePhotoToLocal(formData)
+//     console.log(newFile)
+
+//     const photos = await uploadPhotoToCloudinary(newFile)
+//     console.log(photos)
+
+//     fs.unlink(newFile.filePath)
+//     revalidatePath("/")
+
+//     return {
+//       status: 200,
+//       message: "Berhasil mengupload gambar",
+//       data: {
+//         publicId: photos.public_id,
+//         url: photos.secure_url,
+//       },
+//     }
+//   } catch (error: any) {
+//     return {
+//       status: 500,
+//       message: error.message,
+//     }
+//   }
+// }
 
 export async function uploadPhoto(formData: any) {
+  const image = await formData.get("file")
+  const fileBuffer = await image.arrayBuffer()
+
+  var mime = image.type
+  var encoding = "base64"
+  var base64Data = Buffer.from(fileBuffer).toString("base64")
+  var fileUri = "data:" + mime + ";" + encoding + "," + base64Data
+
   try {
-    const newFile = await savePhotoToLocal(formData)
-    console.log(newFile)
+    const uploadToCloudinary = () => {
+      return new Promise((resolve, reject) => {
+        cloudinary.uploader
+          .upload(fileUri, {
+            invalidate: true,
+          })
+          .then((result) => {
+            console.log(result)
+            resolve(result)
+          })
+          .catch((error) => {
+            console.log(error)
+            reject(error)
+          })
+      })
+    }
 
-    const photos = await uploadPhotoToCloudinary(newFile)
-    console.log(photos)
-
-    fs.unlink(newFile.filePath)
-    revalidatePath("/")
+    const result: any = await uploadToCloudinary()
 
     return {
       status: 200,
       message: "Berhasil mengupload gambar",
       data: {
-        publicId: photos.public_id,
-        url: photos.secure_url,
+        publicId: result.public_id,
+        url: result.secure_url,
       },
     }
   } catch (error: any) {
