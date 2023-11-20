@@ -15,67 +15,6 @@ cloudinary.config({
   secure: true,
 })
 
-// async function savePhotoToLocal(formData: any) {
-//   const file = formData.get("file")
-
-//   const bufferPromise = file.arrayBuffer().then((data: any) => {
-//     const buffer = Buffer.from(data)
-//     const name = uuidv4()
-//     const ext = file.type.split("/")[1]
-
-//     // const uploadDir = path.join(process.cwd(), "public", `/${name}.${ext}`);
-
-//     const tempdir = os.tmpdir()
-//     const uploadDir = path.join(tempdir, `/${name}.${ext}`)
-
-//     fs.writeFile(uploadDir, buffer)
-
-//     return {
-//       filePath: uploadDir,
-//       fileName: file.name,
-//     }
-//   })
-
-//   return await Promise.resolve(bufferPromise)
-// }
-
-// async function uploadPhotoToCloudinary(newFile: any) {
-//   const photoPromise = cloudinary.uploader.upload(newFile.filePath, {
-//     folder: "basoin",
-//   })
-
-//   console.log(photoPromise)
-
-//   return await Promise.resolve(photoPromise)
-// }
-
-// export async function uploadPhoto(formData: any) {
-//   try {
-//     const newFile = await savePhotoToLocal(formData)
-//     console.log(newFile)
-
-//     const photos = await uploadPhotoToCloudinary(newFile)
-//     console.log(photos)
-
-//     fs.unlink(newFile.filePath)
-//     revalidatePath("/")
-
-//     return {
-//       status: 200,
-//       message: "Berhasil mengupload gambar",
-//       data: {
-//         publicId: photos.public_id,
-//         url: photos.secure_url,
-//       },
-//     }
-//   } catch (error: any) {
-//     return {
-//       status: 500,
-//       message: error.message,
-//     }
-//   }
-// }
-
 export async function uploadPhoto(formData: any) {
   const image = await formData.get("file")
   const fileBuffer = await image.arrayBuffer()
@@ -91,6 +30,7 @@ export async function uploadPhoto(formData: any) {
         cloudinary.uploader
           .upload(fileUri, {
             invalidate: true,
+            folder: "basoin",
           })
           .then((result) => {
             console.log(result)
