@@ -132,7 +132,6 @@ export const getLastOpenedSubjects = async (subjectIds: string[]) => {
 
     return response.data
   } catch (error: any) {
-    console.log("error loh")
     throw new Error(error.response.data.message)
   }
 }
