@@ -77,6 +77,10 @@ export async function DELETE(
 
     await Paket.deleteMany({ _subjectId: id })
     await Qna.deleteMany({ _subjectId: id })
+    await Subject.updateMany(
+      { followedSubjects: id },
+      { $pull: { followedSubjects: id } }
+    )
 
     return NextResponse.json({
       status: 200,

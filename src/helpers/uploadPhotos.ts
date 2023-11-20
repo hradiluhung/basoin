@@ -1,12 +1,5 @@
 "use server"
-
-import path from "path"
-import fs from "fs/promises"
-import { v4 as uuidv4 } from "uuid"
-import os from "os"
-
 import { v2 as cloudinary } from "cloudinary"
-import { revalidatePath } from "next/cache"
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
