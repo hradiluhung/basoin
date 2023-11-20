@@ -328,7 +328,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Pertanyaan
                             </span>
-                            <span className="text-basic-color text-lg font-semibold">
+                            <span className="text-basic-color text-lg font-normal">
                               {qna.question}
                             </span>
                           </div>
@@ -348,7 +348,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Jawaban
                             </span>
-                            <span className="text-basic-color text-lg font-semibold">
+                            <span className="text-basic-color text-lg font-normal">
                               {qna.answer}
                             </span>
                           </div>

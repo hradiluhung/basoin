@@ -430,7 +430,7 @@ export default function Page({
       </div>
       <main className="flex flex-col h-full px-10 sm:px-4">
         {openedImageDetail.index !== -1 && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10">
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-30">
             <div className="h-5/6 bg-white rounded-lg flex flex-col justify-center items-center relative">
               {openedImageDetail.type === "question" ? (
                 <img
@@ -751,7 +751,7 @@ export default function Page({
                           <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                             Pertanyaan
                           </span>
-                          <span className="text-basic-color text-lg font-semibold">
+                          <span className="text-basic-color text-lg font-normal">
                             {qna.question}
                           </span>
                         </div>
@@ -771,7 +771,7 @@ export default function Page({
                           <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                             Jawaban
                           </span>
-                          <span className="text-basic-color text-lg font-semibold">
+                          <span className="text-basic-color text-lg font-normal">
                             {qna.answer}
                           </span>
                         </div>

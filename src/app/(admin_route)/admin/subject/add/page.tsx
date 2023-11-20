@@ -5,7 +5,7 @@ import InputField from "@/components/inputField/InputField"
 import PrimaryActionButton from "@/components/buttons/PrimaryActionButton"
 import { createSubject } from "@/controllers/subjectsController"
 import { showToast } from "@/helpers/showToast"
-import { uploadPhoto } from "@/helpers/uploadPhotos"
+import { deletePhoto, uploadPhoto } from "@/helpers/uploadPhotos"
 import { useTheme } from "next-themes"
 import React, { useEffect, useState } from "react"
 import { ArrowLeftCircle, Loader, PlusCircle } from "react-feather"
@@ -75,6 +75,7 @@ export default function Page() {
       } else {
         showToast(res.message, WidgetTypes.ALERT, theme)
         setIsLoading(false)
+        deletePhoto(resUploadPhoto?.data?.publicId)
       }
     } catch (error: any) {
       showToast(error.message, WidgetTypes.ALERT, theme)
