@@ -17,6 +17,7 @@ import FollowButton from "@/components/buttons/FollowButton"
 import { useSession } from "next-auth/react"
 import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
+import Image from "next/image"
 
 export default function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
@@ -328,12 +329,15 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Pertanyaan
                             </span>
-                            <span className="text-basic-color text-lg font-normal">
+                            <span className="text-basic-color text-lg">
                               {qna.question}
                             </span>
                           </div>
                           {qna.questionImage !== "" && (
-                            <img
+                            <Image
+                              width={0}
+                              height={0}
+                              sizes="100vw"
                               // onClick={() => {
                               //   showImageDetail(index, "question")
                               // }}
@@ -348,12 +352,15 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Jawaban
                             </span>
-                            <span className="text-basic-color text-lg font-normal">
+                            <span className="text-basic-color text-lg">
                               {qna.answer}
                             </span>
                           </div>
                           {qna.answerImage !== "" && (
-                            <img
+                            <Image
+                              width={0}
+                              height={0}
+                              sizes="100vw"
                               // onClick={() => {
                               //   showImageDetail(index, "answer")
                               // }}
@@ -396,7 +403,10 @@ export default function Page({ params }: { params: { id: string } }) {
                             </span>
                           </div>
                           {qna.questionImage !== "" && (
-                            <img
+                            <Image
+                              width={0}
+                              height={0}
+                              sizes="100vw"
                               // onClick={() => {
                               //   showImageDetail(index, "question")
                               // }}
@@ -416,7 +426,10 @@ export default function Page({ params }: { params: { id: string } }) {
                             </span>
                           </div>
                           {qna.answerImage !== "" && (
-                            <img
+                            <Image
+                              width={0}
+                              height={0}
+                              sizes="100vw"
                               // onClick={() => {
                               //   showImageDetail(index, "answer")
                               // }}

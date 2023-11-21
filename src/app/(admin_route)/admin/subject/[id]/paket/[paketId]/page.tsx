@@ -33,6 +33,7 @@ import {
   Trash2,
   X,
 } from "react-feather"
+import Image from "next/image"
 
 export default function Page({
   params,
@@ -433,13 +434,19 @@ export default function Page({
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-30">
             <div className="h-5/6 bg-white rounded-lg flex flex-col justify-center items-center relative">
               {openedImageDetail.type === "question" ? (
-                <img
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   src={qnas[openedImageDetail.index].questionImage}
                   alt="question"
                   className="w-auto h-full rounded-lg object-cover"
                 />
               ) : (
-                <img
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   src={qnas[openedImageDetail.index].answerImage}
                   alt="answer"
                   className="w-auto h-full rounded-lg object-cover"
@@ -756,7 +763,10 @@ export default function Page({
                           </span>
                         </div>
                         {qna.questionImage !== "" && (
-                          <img
+                          <Image
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                             onClick={() => {
                               showImageDetail(index, "question")
                             }}
@@ -776,7 +786,10 @@ export default function Page({
                           </span>
                         </div>
                         {qna.answerImage !== "" && (
-                          <img
+                          <Image
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                             onClick={() => {
                               showImageDetail(index, "answer")
                             }}
@@ -829,12 +842,15 @@ export default function Page({
                           <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                             Pertanyaan
                           </span>
-                          <span className="text-basic-color text-lg font-semibold">
+                          <span className="text-basic-color text-lg">
                             {qna.question}
                           </span>
                         </div>
                         {qna.questionImage !== "" && (
-                          <img
+                          <Image
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                             onClick={() => {
                               showImageDetail(index, "question")
                             }}
@@ -849,12 +865,15 @@ export default function Page({
                           <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                             Jawaban
                           </span>
-                          <span className="text-basic-color text-lg font-semibold">
+                          <span className="text-basic-color text-lg">
                             {qna.answer}
                           </span>
                         </div>
                         {qna.answerImage !== "" && (
-                          <img
+                          <Image
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                             onClick={() => {
                               showImageDetail(index, "answer")
                             }}
