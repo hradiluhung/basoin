@@ -10,6 +10,7 @@ import { useCheckIfMobileSize } from "@/helpers/checkIfMobileSize"
 import { showToast } from "@/helpers/showToast"
 import { signIn } from "next-auth/react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { LogIn, Menu, Search, X } from "react-feather"
@@ -329,7 +330,13 @@ export default function Page() {
               </p>
             </div>
             <div className="flex gap-2 w-full">
-              <PrimaryActionButton text="Cari Bank Soal" ButtonIcon={Search} />
+              <PrimaryActionButton
+                text="Cari Bank Soal"
+                ButtonIcon={Search}
+                onClick={() => {
+                  setIsLoginModalOpen(true)
+                }}
+              />
               <SecondaryActionButton
                 text="Daftar"
                 onClick={onOpenSignUpModal}
@@ -345,9 +352,12 @@ export default function Page() {
             <div className="w-36 h-36 -z-10 top-0 start-0 end-0 bottom-0 m-auto absolute rounded-full bg-yellow-300 animate-rotate-clockwise opacity-50 blur-xl"></div>
             <div className="w-52 h-52 -z-10 top-0 start-0 end-0 bottom-0 m-auto absolute rounded-full bg-blue-500 animate-rotate-anticlockwise opacity-50 blur-xl"></div>
 
-            <img
+            <Image
               src="/home_image.png"
               alt="home_image"
+              width={0}
+              height={0}
+              sizes="100vw"
               className="w-80 animate-up-down"
             />
           </div>

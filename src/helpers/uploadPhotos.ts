@@ -26,11 +26,9 @@ export async function uploadPhoto(formData: any) {
             folder: "basoin",
           })
           .then((result) => {
-            console.log(result)
             resolve(result)
           })
           .catch((error) => {
-            console.log(error)
             reject(error)
           })
       })
