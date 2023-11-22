@@ -247,7 +247,7 @@ export default function Page() {
               onChange: (e: any) =>
                 setInputLogin({
                   ...inputLogin,
-                  password: e.target.value.toLowerCase(),
+                  password: e.target.value,
                 }),
               placeholder: "Masukkan password",
               required: true,
