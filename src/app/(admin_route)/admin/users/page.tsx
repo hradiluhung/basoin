@@ -4,7 +4,7 @@ import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 import { getAllUsers } from "@/controllers/usersController"
 import { User } from "@/domain/domain"
-import React, { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { BookOpen } from "react-feather"
 
 export default function Page() {
@@ -33,7 +33,7 @@ export default function Page() {
     setIsLoadingFetchUser(false)
   }
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     const filtered = users.filter((user) => {
       return (
         user.name
@@ -44,7 +44,7 @@ export default function Page() {
       )
     })
     setFilteredUsers(filtered)
-  }
+  }, [angkatanFilter, searchQuery, users])
 
   useEffect(() => {
     fetchUsers()
@@ -57,7 +57,7 @@ export default function Page() {
 
   useEffect(() => {
     onFilterChange()
-  }, [searchQuery, angkatanFilter])
+  }, [searchQuery, angkatanFilter, onFilterChange])
 
   return (
     <>

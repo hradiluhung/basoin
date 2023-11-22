@@ -18,7 +18,7 @@ import { deleteSubject, getSubjectById } from "@/controllers/subjectsController"
 import { showToast } from "@/helpers/showToast"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {
   ArrowLeftCircle,
   ArrowUpRight,
@@ -80,14 +80,14 @@ export default function Page({ params }: { params: { id: string } }) {
     setScrollPosition(position)
   }
 
-  const fetchSubject = async () => {
+  const fetchSubject = useCallback(async () => {
     const res = await getSubjectById(params.id)
     setSubject(res.subject)
 
     setIsLoadingSubject(false)
-  }
+  }, [params.id])
 
-  const fetchPakets = async () => {
+  const fetchPakets = useCallback(async () => {
     const res = await getAllPaketsBySubjectId(params.id)
     const years = Array.from(
       new Set(res.pakets.map((paket: Paket) => paket.year))
@@ -96,12 +96,12 @@ export default function Page({ params }: { params: { id: string } }) {
     setPakets(res.pakets)
     setYears(years)
     setIsLoadingPakets(false)
-  }
+  }, [params.id])
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     await fetchSubject()
     await fetchPakets()
-  }
+  }, [fetchPakets, fetchSubject])
 
   const onBackToPreviousScreen = () => {
     router.back()
@@ -184,7 +184,7 @@ export default function Page({ params }: { params: { id: string } }) {
     setYears(years.filter((year) => year !== selectedDeletedPaket.year))
   }
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     let filteredPakets = pakets
     if (filterYear !== "") {
       filteredPakets = filteredPakets.filter(
@@ -199,7 +199,7 @@ export default function Page({ params }: { params: { id: string } }) {
     }
 
     setFilteredPakets(filteredPakets)
-  }
+  }, [filterPaketType, filterYear, pakets])
 
   const onCloseModalAddPaket = () => {
     setIsFormModalOpen(false)
@@ -222,11 +222,11 @@ export default function Page({ params }: { params: { id: string } }) {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [fetchAllData])
 
   useEffect(() => {
     onFilterChange()
-  }, [filterYear, filterPaketType])
+  }, [filterYear, filterPaketType, onFilterChange])
 
   return (
     <>

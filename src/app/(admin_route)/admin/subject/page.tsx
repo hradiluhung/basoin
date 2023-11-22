@@ -5,7 +5,7 @@ import PrimaryNavButton from "@/components/buttons/PrimaryNavButton"
 import SearchBar from "@/components/searchBar/SearchBar"
 import SubjectCard from "@/components/cards/SubjectCardAdmin"
 import { getAllSubjects } from "@/controllers/subjectsController"
-import React, { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Grid, List, PlusCircle } from "react-feather"
 import { Semester } from "@/constants/subject"
 import { Subject } from "@/domain/domain"
@@ -34,7 +34,7 @@ export default function Page() {
     setIsLoading(false)
   }
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     const filtered = subjects.filter((subject) => {
       return (
         subject.name
@@ -45,7 +45,7 @@ export default function Page() {
       )
     })
     setFilteredSubjects(filtered)
-  }
+  }, [searchQuery, semesterFilter, subjects])
 
   const onChangeView = (viewType: ViewType) => {
     localStorage.setItem("viewType", viewType)
@@ -73,7 +73,7 @@ export default function Page() {
 
   useEffect(() => {
     onFilterChange()
-  }, [searchQuery, semesterFilter])
+  }, [onFilterChange, searchQuery, semesterFilter])
 
   return (
     <>

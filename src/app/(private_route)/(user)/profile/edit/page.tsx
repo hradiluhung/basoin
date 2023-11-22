@@ -10,7 +10,7 @@ import { showToast } from "@/helpers/showToast"
 import { useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ArrowLeftCircle, Check, Key, Loader } from "react-feather"
 
 export default function Page() {
@@ -39,14 +39,14 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false)
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     if (data?.user?.id) {
       const res = await getUserById(data?.user?.id)
       setUser(res.user)
       setOldUser(res.user)
       setIsLoading(false)
     }
-  }
+  }, [data?.user?.id])
 
   const onBackToPreviousScreen = () => {
     router.back()
@@ -81,7 +81,7 @@ export default function Page() {
 
   useEffect(() => {
     fetchUser()
-  }, [data])
+  }, [data, fetchUser])
 
   return (
     <main className="flex flex-col h-full px-10 sm:px-2">

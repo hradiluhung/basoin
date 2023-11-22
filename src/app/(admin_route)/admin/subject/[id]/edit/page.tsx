@@ -10,8 +10,9 @@ import { showToast } from "@/helpers/showToast"
 import { deletePhoto, uploadPhoto } from "@/helpers/uploadPhotos"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ArrowLeftCircle, Check, Loader } from "react-feather"
+import Image from "next/image"
 
 export default function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
@@ -35,7 +36,7 @@ export default function Page({ params }: { params: { id: string } }) {
     router.back()
   }
 
-  const fetchSubject = async () => {
+  const fetchSubject = useCallback(async () => {
     const data = await getSubjectById(params.id.toString())
 
     setSubjectName(data.subject.name)
@@ -45,7 +46,7 @@ export default function Page({ params }: { params: { id: string } }) {
     setSubjectPublicId(data.subject.publicId)
 
     setIsLoadingInit(false)
-  }
+  }, [params.id])
 
   async function onChangeInputFile(e: any) {
     const file = e.target.files[0]
@@ -132,7 +133,7 @@ export default function Page({ params }: { params: { id: string } }) {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [fetchSubject])
 
   return (
     <>
@@ -179,7 +180,10 @@ export default function Page({ params }: { params: { id: string } }) {
                   <>
                     <span className="block mb-2">Gambar Cover</span>
                     <div className="w-full px-2 py-2 rounded-md bg-input-color border border-soft-border-color focus:outline-blue-500">
-                      <img
+                      <Image
+                        width={0}
+                        height={0}
+                        sizes="100vw"
                         src={
                           image != null
                             ? URL.createObjectURL(image)

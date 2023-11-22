@@ -10,7 +10,7 @@ import {
 import { showToast } from "@/helpers/showToast"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ArrowLeftCircle, BookOpen, UserCheck } from "react-feather"
 import { QnaWithYearAndType, SubjectWithIsFollowed } from "@/domain/domain"
 import FollowButton from "@/components/buttons/FollowButton"
@@ -52,7 +52,7 @@ export default function Page({ params }: { params: { id: string } }) {
     setScrollPosition(position)
   }
 
-  const fetchSubject = async () => {
+  const fetchSubject = useCallback(async () => {
     if (data?.user?.id !== undefined) {
       const res = await getSubjectWithIsFollowedByUserById({
         subjectId: params.id,
@@ -62,9 +62,9 @@ export default function Page({ params }: { params: { id: string } }) {
 
       setIsLoadingSubject(false)
     }
-  }
+  }, [data?.user?.id, params.id])
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     const res = await getAllQuestionsBySubjectId(params.id)
 
     const years = Array.from(
@@ -74,18 +74,18 @@ export default function Page({ params }: { params: { id: string } }) {
     setYears(years)
     setQnas(res.questions)
     setIsLoadingQnas(false)
-  }
+  }, [params.id])
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     await fetchSubject()
     await fetchQuestions()
-  }
+  }, [fetchQuestions, fetchSubject])
 
   const onBackToPreviousScreen = () => {
     router.back()
   }
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     let filteredQnas = qnas
     if (filterYear !== "") {
       filteredQnas = filteredQnas.filter(
@@ -107,7 +107,7 @@ export default function Page({ params }: { params: { id: string } }) {
     }
 
     setFilteredQnas(filteredQnas)
-  }
+  }, [filterPaketType, filterYear, qnas, searchQuery])
 
   const onUpdateFollowedSubjects = async () => {
     if (data?.user?.id !== undefined) {
@@ -133,7 +133,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   // update last opened subject in local storage and remove the earlier one if it's more than 4
-  const updateLastOpenedSubject = () => {
+  const updateLastOpenedSubject = useCallback(() => {
     const lastOpenedSubject = localStorage.getItem("lastOpenedSubject")
     if (lastOpenedSubject !== null) {
       const lastOpenedSubjectList = JSON.parse(lastOpenedSubject)
@@ -154,7 +154,7 @@ export default function Page({ params }: { params: { id: string } }) {
     } else {
       localStorage.setItem("lastOpenedSubject", JSON.stringify([params.id]))
     }
-  }
+  }, [params.id])
 
   useEffect(() => {
     updateLastOpenedSubject()
@@ -163,15 +163,15 @@ export default function Page({ params }: { params: { id: string } }) {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [updateLastOpenedSubject])
 
   useEffect(() => {
     onFilterChange()
-  }, [filterYear, filterPaketType, searchQuery])
+  }, [filterYear, filterPaketType, searchQuery, onFilterChange])
 
   useEffect(() => {
     fetchAllData()
-  }, [data])
+  }, [data, fetchAllData])
 
   return (
     <>

@@ -14,7 +14,7 @@ import { SubjectWithIsFollowed } from "@/domain/domain"
 import { showToast } from "@/helpers/showToast"
 import { useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Grid, List } from "react-feather"
 
 export default function Page() {
@@ -36,7 +36,7 @@ export default function Page() {
     setScrollPosition(position)
   }
 
-  const fetchSubjects = async () => {
+  const fetchSubjects = useCallback(async () => {
     if (data?.user?.id !== undefined) {
       const res = await getAllSubjectsWithIsFollowedByUser(data?.user?.id)
 
@@ -47,9 +47,9 @@ export default function Page() {
         setListIsLoadingFollow((prev) => [...prev, false])
       })
     }
-  }
+  }, [data?.user?.id])
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     const filtered = subjects.filter((subject) => {
       return (
         subject.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
@@ -57,7 +57,7 @@ export default function Page() {
       )
     })
     setFilteredSubjects(filtered)
-  }
+  }, [searchQuery, semesterFilter, subjects])
 
   const onChangeView = (viewType: ViewType) => {
     localStorage.setItem("viewType", viewType)
@@ -128,11 +128,11 @@ export default function Page() {
 
   useEffect(() => {
     onFilterChange()
-  }, [searchQuery, semesterFilter])
+  }, [onFilterChange, searchQuery, semesterFilter])
 
   useEffect(() => {
     fetchSubjects()
-  }, [data])
+  }, [data, fetchSubjects])
 
   return (
     <>

@@ -1,6 +1,6 @@
 "use client"
 import Banner from "@/components/banner/Banner"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { SubjectWithIsFollowed, User } from "@/domain/domain"
 import { getUserById } from "@/controllers/usersController"
@@ -34,16 +34,16 @@ export default function Page() {
     setScrollPosition(position)
   }
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     if (data?.user?.id !== undefined) {
       const res = await getUserById(data?.user?.id)
       setUser(res.user)
 
       setIsLoadingFetchUser(false)
     }
-  }
+  }, [data?.user?.id])
 
-  const fetchLastOpenedSubjects = async () => {
+  const fetchLastOpenedSubjects = useCallback(async () => {
     const lastOpenedSubject = localStorage.getItem("lastOpenedSubject")
 
     let parsedLastOpenedSubject = []
@@ -59,7 +59,7 @@ export default function Page() {
     } finally {
       setIsLoadingFetchSubjects(false)
     }
-  }
+  }, [theme])
 
   useEffect(() => {
     fetchLastOpenedSubjects()
@@ -68,11 +68,11 @@ export default function Page() {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [fetchLastOpenedSubjects])
 
   useEffect(() => {
     fetchUser()
-  }, [data])
+  }, [data, fetchUser])
 
   return (
     <>

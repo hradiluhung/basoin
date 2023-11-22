@@ -24,7 +24,7 @@ import { deletePhoto, uploadPhoto } from "@/helpers/uploadPhotos"
 import { useTheme } from "next-themes"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {
   ArrowLeftCircle,
   Edit2,
@@ -111,7 +111,7 @@ export default function Page({
     setScrollPosition(position)
   }
 
-  const fetchPaketsAndSubject = async () => {
+  const fetchPaketsAndSubject = useCallback(async () => {
     const resPakets = await getPaketByPaketId(params.paketId.toString())
     setPaket(resPakets.paket)
 
@@ -119,19 +119,19 @@ export default function Page({
     setSubject(resSubject.subject)
 
     setIsLoadingPaketsAndSubject(false)
-  }
+  }, [params.id, params.paketId])
 
-  const fetchQnas = async () => {
+  const fetchQnas = useCallback(async () => {
     const dataQnas = await getAllQnasByPaketId(params.paketId.toString())
     setQnas(dataQnas.qnas)
 
     setIsLoadingQnas(false)
-  }
+  }, [params.paketId])
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     await fetchPaketsAndSubject()
     await fetchQnas()
-  }
+  }, [fetchPaketsAndSubject, fetchQnas])
 
   const onDeletePaket = async () => {
     setIsLoadingDelete(true)
@@ -379,7 +379,7 @@ export default function Page({
     }
   }
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     const filtered = qnas.filter((qna) => {
       return (
         qna.question
@@ -394,7 +394,7 @@ export default function Page({
     })
 
     setFilteredQnas(filtered)
-  }
+  }, [qnas, searchQuery])
 
   useEffect(() => {
     fetchAllData()
@@ -403,11 +403,11 @@ export default function Page({
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [fetchAllData])
 
   useEffect(() => {
     onFilterChange()
-  }, [searchQuery])
+  }, [onFilterChange, searchQuery])
 
   return (
     <>

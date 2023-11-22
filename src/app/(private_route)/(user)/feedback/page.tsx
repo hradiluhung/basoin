@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { Check, Loader } from "react-feather"
+import Image from "next/image"
 
 type Props = {}
 
@@ -158,7 +159,10 @@ export default function Page({}: Props) {
               <div className="flex flex-col gap-2">
                 <span className="block mb-2">Gambar Cover</span>
                 <div className="w-full px-2 py-2 rounded-md bg-input-color border border-soft-border-color focus:outline-blue-500">
-                  <img
+                  <Image
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     src={URL.createObjectURL(image)}
                     alt="Cover Mata Kuliah"
                     className="w-full h-48 object-cover rounded-md"

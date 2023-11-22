@@ -6,7 +6,8 @@ import { WidgetTypes } from "@/constants/widgetTypes"
 import { getAllFeedbacks } from "@/controllers/feedbacksController"
 import { Feedback } from "@/domain/domain"
 import { useEffect, useState } from "react"
-import { BookOpen, Image, Maximize2, X } from "react-feather"
+import { BookOpen, Image as ImageIcon, Maximize2, X } from "react-feather"
+import Image from "next/image"
 
 export default function Page() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
@@ -93,7 +94,10 @@ export default function Page() {
                 {selectedFeedback.image !== "" && (
                   <div className="flex flex-col gap-1">
                     <p className="text-base font-semibold opacity-50">Gambar</p>
-                    <img
+                    <Image
+                      width={0}
+                      height={0}
+                      sizes="100vw"
                       src={selectedFeedback.image}
                       alt="feedback image"
                       className="rounded-lg shadow-md"
@@ -166,7 +170,7 @@ export default function Page() {
                     <div className="flex gap-2">
                       {feedback.image !== "" && (
                         <div className="flex justify-center items-center p-2 bg-mark-color rounded-full">
-                          <Image className="h-6 w-6" />
+                          <ImageIcon className="h-6 w-6" />
                         </div>
                       )}
                       <div className="flex flex-col opacity-50">

@@ -1,11 +1,12 @@
 "use client"
 import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { User } from "@/domain/domain"
 import { getUserById } from "@/controllers/usersController"
 import { Edit } from "react-feather"
 import TetriaryActionButton from "@/components/buttons/TetriaryActionButton"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function Page() {
   const { data } = useSession()
@@ -22,17 +23,17 @@ export default function Page() {
   })
   const [isLoading, setIsLoading] = useState(true)
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     if (data?.user?.id) {
       const res = await getUserById(data?.user?.id)
       setUser(res.user)
       setIsLoading(false)
     }
-  }
+  }, [data?.user?.id])
 
   useEffect(() => {
     fetchUser()
-  }, [data])
+  }, [data, fetchUser])
 
   return (
     <main className="px-10 sm:px-2">
@@ -59,7 +60,10 @@ export default function Page() {
           <>
             <div className="w-full h-48 rounded-lg bg-card-color relative p-4">
               <div className="flex flex-col justify-center items-center h-full">
-                <img
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   src={`https://api.dicebear.com/7.x/initials/svg?seed=${user.name}&backgroundType=gradientLinear`}
                   alt="avatar"
                   className="w-24 h-24 rounded-full"

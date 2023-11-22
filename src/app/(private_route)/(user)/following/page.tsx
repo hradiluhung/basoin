@@ -12,11 +12,10 @@ import {
   updateFollowedSubjects,
 } from "@/controllers/subjectsController"
 import { SubjectWithIsFollowed } from "@/domain/domain"
-import { useCheckIfMobileSize } from "@/helpers/checkIfMobileSize"
 import { showToast } from "@/helpers/showToast"
 import { useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Grid, List } from "react-feather"
 
 export default function Page() {
@@ -81,7 +80,7 @@ export default function Page() {
     }
   }
 
-  const fetchSubjects = async () => {
+  const fetchSubjects = useCallback(async () => {
     if (data?.user?.id !== undefined) {
       setIsLoading(true)
       const res = await getFollowedSubjectsByUserId(data?.user?.id)
@@ -93,9 +92,9 @@ export default function Page() {
         setListIsLoadingFollow((prev) => [...prev, false])
       })
     }
-  }
+  }, [data?.user?.id])
 
-  const onFilterChange = () => {
+  const onFilterChange = useCallback(() => {
     const filtered = subjects.filter((subject) => {
       return (
         subject.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
@@ -103,7 +102,7 @@ export default function Page() {
       )
     })
     setFilteredSubjects(filtered)
-  }
+  }, [searchQuery, semesterFilter, subjects])
 
   const onChangeView = (viewType: ViewType) => {
     localStorage.setItem("viewType", viewType)
@@ -130,11 +129,11 @@ export default function Page() {
 
   useEffect(() => {
     onFilterChange()
-  }, [searchQuery, semesterFilter])
+  }, [onFilterChange, searchQuery, semesterFilter])
 
   useEffect(() => {
     fetchSubjects()
-  }, [data])
+  }, [data, fetchSubjects])
 
   return (
     <>

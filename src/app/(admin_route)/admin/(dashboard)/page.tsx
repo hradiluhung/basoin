@@ -5,7 +5,7 @@ import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 import { getAllFeedbacks } from "@/controllers/feedbacksController"
 import { getAllSubjects } from "@/controllers/subjectsController"
 import { getAllUsers } from "@/controllers/usersController"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Book, Send, User } from "react-feather"
 
 export default function Page() {
@@ -37,13 +37,13 @@ export default function Page() {
     setNumberOfFeedbacks(res.feedbacks.length)
   }
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     await fetchUsers()
     await fetchSubjects()
     await fetchFeedbacks()
 
     setIsLoading(false)
-  }
+  }, [])
 
   useEffect(() => {
     fetchAllData()
@@ -52,7 +52,7 @@ export default function Page() {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [fetchAllData])
 
   return (
     <>

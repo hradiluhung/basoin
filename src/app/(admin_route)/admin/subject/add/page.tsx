@@ -7,12 +7,13 @@ import { createSubject } from "@/controllers/subjectsController"
 import { showToast } from "@/helpers/showToast"
 import { deletePhoto, uploadPhoto } from "@/helpers/uploadPhotos"
 import { useTheme } from "next-themes"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { ArrowLeftCircle, Loader, PlusCircle } from "react-feather"
 import { useRouter } from "next/navigation"
 import { WidgetTypes } from "@/constants/widgetTypes"
 import { Semester } from "@/constants/subject"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
+import Image from "next/image"
 
 export default function Page() {
   const { theme } = useTheme()
@@ -132,7 +133,10 @@ export default function Page() {
                 <>
                   <span className="block mb-2">Gambar Cover</span>
                   <div className="w-full px-2 py-2 rounded-md bg-input-color border border-soft-border-color focus:outline-blue-500">
-                    <img
+                    <Image
+                      width={0}
+                      height={0}
+                      sizes="100vw"
                       src={URL.createObjectURL(image)}
                       alt="Cover Mata Kuliah"
                       className="w-full h-48 object-cover rounded-md"
