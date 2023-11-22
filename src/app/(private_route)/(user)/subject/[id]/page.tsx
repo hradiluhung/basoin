@@ -11,13 +11,14 @@ import { showToast } from "@/helpers/showToast"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
-import { ArrowLeftCircle, BookOpen, UserCheck } from "react-feather"
+import { ArrowLeftCircle, BookOpen, UserCheck, X } from "react-feather"
 import { QnaWithYearAndType, SubjectWithIsFollowed } from "@/domain/domain"
 import FollowButton from "@/components/buttons/FollowButton"
 import { useSession } from "next-auth/react"
 import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"
 import Image from "next/image"
+import PrimaryActionButton from "@/components/buttons/PrimaryActionButton"
 
 export default function Page({ params }: { params: { id: string } }) {
   const { theme } = useTheme()
@@ -51,6 +52,13 @@ export default function Page({ params }: { params: { id: string } }) {
     const position = window.scrollY
     setScrollPosition(position)
   }
+  const [openedImageDetail, setOpenedImageDetail] = useState<{
+    index: number
+    type: string
+  }>({
+    index: -1,
+    type: "",
+  })
 
   const fetchSubject = useCallback(async () => {
     if (data?.user?.id !== undefined) {
@@ -132,6 +140,20 @@ export default function Page({ params }: { params: { id: string } }) {
     }
   }
 
+  const showImageDetail = (index: number, type: string) => {
+    setOpenedImageDetail({
+      index: index,
+      type: type,
+    })
+  }
+
+  const closeImageDetail = () => {
+    setOpenedImageDetail({
+      index: -1,
+      type: "",
+    })
+  }
+
   // update last opened subject in local storage and remove the earlier one if it's more than 4
   const updateLastOpenedSubject = useCallback(() => {
     const lastOpenedSubject = localStorage.getItem("lastOpenedSubject")
@@ -184,6 +206,39 @@ export default function Page({ params }: { params: { id: string } }) {
         <ToggleThemeButton />
       </div>
       <main className="flex flex-col h-full px-10 sm:px-2">
+        {openedImageDetail.index !== -1 && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-30">
+            <div className="h-5/6 bg-white rounded-lg flex flex-col justify-center items-center relative">
+              {openedImageDetail.type === "question" ? (
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  src={qnas[openedImageDetail.index].questionImage}
+                  alt="question"
+                  className="w-auto h-full rounded-lg object-cover"
+                />
+              ) : (
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  src={qnas[openedImageDetail.index].answerImage}
+                  alt="answer"
+                  className="w-auto h-full rounded-lg object-cover"
+                />
+              )}
+              <div className="absolute top-1 right-1">
+                <PrimaryActionButton
+                  onClick={closeImageDetail}
+                  ButtonIcon={X}
+                  type={WidgetTypes.ALERT}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="mb-6 flex justify-between items-center md:flex-col md:items-start sm:flex-col sm:items-start gap-4">
           <div className="flex flex-col justify-start">
             <div className="flex gap-2 items-start">
@@ -329,7 +384,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Pertanyaan
                             </span>
-                            <span className="text-basic-color text-lg">
+                            <span className="text-basic-color text-lg font-normal">
                               {qna.question}
                             </span>
                           </div>
@@ -338,9 +393,9 @@ export default function Page({ params }: { params: { id: string } }) {
                               width={0}
                               height={0}
                               sizes="100vw"
-                              // onClick={() => {
-                              //   showImageDetail(index, "question")
-                              // }}
+                              onClick={() => {
+                                showImageDetail(index, "question")
+                              }}
                               src={qna.questionImage}
                               alt="question"
                               className="w-2/3 h-48 mx-auto rounded-lg object-cover cursor-pointer md:w-full sm:w-full"
@@ -352,7 +407,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Jawaban
                             </span>
-                            <span className="text-basic-color text-lg">
+                            <span className="text-basic-color text-lg font-normal">
                               {qna.answer}
                             </span>
                           </div>
@@ -361,9 +416,9 @@ export default function Page({ params }: { params: { id: string } }) {
                               width={0}
                               height={0}
                               sizes="100vw"
-                              // onClick={() => {
-                              //   showImageDetail(index, "answer")
-                              // }}
+                              onClick={() => {
+                                showImageDetail(index, "answer")
+                              }}
                               src={qna.answerImage}
                               alt="answer"
                               className="w-2/3 h-48 mx-auto rounded-lg object-cover cursor-pointer md:w-full sm:w-full"
@@ -398,7 +453,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Pertanyaan
                             </span>
-                            <span className="text-basic-color text-lg font-semibold">
+                            <span className="text-basic-color text-lg font-normal">
                               {qna.question}
                             </span>
                           </div>
@@ -407,9 +462,9 @@ export default function Page({ params }: { params: { id: string } }) {
                               width={0}
                               height={0}
                               sizes="100vw"
-                              // onClick={() => {
-                              //   showImageDetail(index, "question")
-                              // }}
+                              onClick={() => {
+                                showImageDetail(index, "question")
+                              }}
                               src={qna.questionImage}
                               alt="question"
                               className="w-2/3 h-48 mx-auto rounded-lg object-cover cursor-pointer md:w-full sm:w-full"
@@ -421,7 +476,7 @@ export default function Page({ params }: { params: { id: string } }) {
                             <span className="text-gray-500 rounded-3xl text-sm px-2 bg-mark-color">
                               Jawaban
                             </span>
-                            <span className="text-basic-color text-lg font-semibold">
+                            <span className="text-basic-color text-lg font-normal">
                               {qna.answer}
                             </span>
                           </div>
@@ -430,9 +485,9 @@ export default function Page({ params }: { params: { id: string } }) {
                               width={0}
                               height={0}
                               sizes="100vw"
-                              // onClick={() => {
-                              //   showImageDetail(index, "answer")
-                              // }}
+                              onClick={() => {
+                                showImageDetail(index, "answer")
+                              }}
                               src={qna.answerImage}
                               alt="answer"
                               className="w-2/3 h-48 mx-auto rounded-lg object-cover cursor-pointer md:w-full sm:w-full"
