@@ -1,5 +1,4 @@
-import React from "react"
-import { Icon, Trash } from "react-feather"
+import { Icon } from "react-feather"
 import SecondaryNavButton from "../buttons/SecondaryNavButton"
 import { WidgetTypes } from "@/constants/widgetTypes"
 import TetriaryActionButton from "../buttons/TetriaryActionButton"

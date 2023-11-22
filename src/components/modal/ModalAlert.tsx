@@ -1,5 +1,3 @@
-import { title } from "process";
-import React from "react";
 import { Icon, Loader } from "react-feather";
 import SecondaryActionButton from "../buttons/SecondaryActionButton";
 import PrimaryActionButton from "../buttons/PrimaryActionButton";

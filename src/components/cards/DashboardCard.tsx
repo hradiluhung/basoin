@@ -1,5 +1,3 @@
-import Link from "next/link";
-import React from "react";
 import { Icon } from "react-feather";
 import PrimaryNavButton from "../buttons/PrimaryNavButton";
 

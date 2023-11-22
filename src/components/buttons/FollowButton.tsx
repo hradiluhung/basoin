@@ -1,4 +1,3 @@
-import React from "react"
 import { Heart, Loader } from "react-feather"
 
 type Props = {

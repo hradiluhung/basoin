@@ -1,6 +1,5 @@
 import { WidgetTypes } from "@/constants/widgetTypes"
 import Link from "next/link"
-import React from "react"
 import { Icon } from "react-feather"
 
 type Props = {

@@ -1,6 +1,6 @@
 "use client"
 
-import SubjectCard from "@/components/cards/SubjectCardAdmin"
+import SubjectCard from "@/components/cards/SubjectCard"
 import DropDownFilter from "@/components/dropdownFilter/DropDownFilter"
 import SearchBar from "@/components/searchBar/SearchBar"
 import ToggleThemeButton from "@/components/toggleThemeButton/ToggleThemeButton"

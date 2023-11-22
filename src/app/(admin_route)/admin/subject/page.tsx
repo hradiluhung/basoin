@@ -3,7 +3,7 @@
 import DropDownFilter from "@/components/dropdownFilter/DropDownFilter"
 import PrimaryNavButton from "@/components/buttons/PrimaryNavButton"
 import SearchBar from "@/components/searchBar/SearchBar"
-import SubjectCard from "@/components/cards/SubjectCardAdmin"
+import SubjectCard from "@/components/cards/SubjectCard"
 import { getAllSubjects } from "@/controllers/subjectsController"
 import { useCallback, useEffect, useState } from "react"
 import { Grid, List, PlusCircle } from "react-feather"

@@ -1,6 +1,6 @@
 "use client"
 import { useTheme } from "next-themes"
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Moon, Sun } from "react-feather"
 
 export default function ToggleThemeButton() {

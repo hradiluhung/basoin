@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link"
 import { CheckCircle } from "react-feather"
+import Image from "next/image"
 
 type Props = {
   followedSubjectCount: number
@@ -36,7 +37,10 @@ export default function Banner({ followedSubjectCount }: Props) {
         </div>
       </div>
       <div className="flex items-center h-32 md:h-auto sm:h-auto">
-        <img
+        <Image
+          width={0}
+          height={0}
+          sizes="100vw"
           src="/magnifying-glass.png"
           alt="home_image"
           className="w-80 animate-up-down"

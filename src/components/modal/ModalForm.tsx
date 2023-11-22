@@ -1,4 +1,3 @@
-import React from "react"
 import InputField from "../inputField/InputField"
 import DropdownInput from "../dropdownInput/DropdownInput"
 import SecondaryActionButton from "../buttons/SecondaryActionButton"

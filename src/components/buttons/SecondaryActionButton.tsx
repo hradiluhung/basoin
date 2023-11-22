@@ -1,5 +1,4 @@
 import { WidgetTypes } from "@/constants/widgetTypes"
-import React from "react"
 import { Icon } from "react-feather"
 
 type Props = {

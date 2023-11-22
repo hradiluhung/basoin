@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Role } from "@/constants/role"
 import { adminMenu, userMenu } from "./listNavMenu"
 import Link from "next/link"

@@ -1,11 +1,11 @@
-import React from "react"
 import PrimaryNavButton from "../buttons/PrimaryNavButton"
-import { ArrowUpRight, BookOpen, Heart, UserCheck } from "react-feather"
+import { ArrowUpRight, BookOpen, UserCheck } from "react-feather"
 import { Semester } from "@/constants/subject"
 import { Role } from "@/constants/role"
 import FollowButton from "../buttons/FollowButton"
 import { Subject, SubjectWithIsFollowed } from "@/domain/domain"
 import { ViewType } from "@/constants/viewType"
+import Image from "next/image"
 
 type Props = {
   subject: Subject | SubjectWithIsFollowed
@@ -33,7 +33,10 @@ export default function SubjectCard({
           key={subject._id}
           className="rounded-lg shadow-md bg-card-color flex justify-between items-center flex-col overflow-hidden"
         >
-          <img
+          <Image
+            width={0}
+            height={0}
+            sizes="100vw"
             src={
               subject.image !== "" ? subject.image : "/placeholder_subject.jpg"
             }
